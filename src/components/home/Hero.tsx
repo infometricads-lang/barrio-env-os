@@ -2,10 +2,21 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/i18n';
+import heroImage from '@/assets/hero-money-transfer.jpg';
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-primary-light">
+    <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-primary-light min-h-[600px] md:min-h-[700px]">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={heroImage}
+          alt="Servicio de transferencias internacionales de dinero"
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70" />
+      </div>
+
       {/* Decorative blobs */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-60 animate-float" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl opacity-80" />
