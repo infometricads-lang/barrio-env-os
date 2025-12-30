@@ -1,4 +1,7 @@
-// Location data - Replace with real data when available
+// Location data with real store information
+
+import collblancImg from '@/assets/locations/collblanc.png';
+import laTorrassaImg from '@/assets/locations/la-torrassa.png';
 
 export interface Location {
   id: string;
@@ -6,12 +9,22 @@ export interface Location {
   neighborhood: string;
   name: string;
   address: string;
+  fullAddress: {
+    street: string;
+    postalCode: string;
+    city: string;
+    province: string;
+    country: string;
+  };
   phone: string;
   whatsapp?: string;
+  web?: string;
+  instagram?: string;
   schedule: {
     weekdays: string;
     saturday: string;
     sunday: string;
+    notes?: string;
   };
   coordinates: {
     lat: number;
@@ -19,6 +32,10 @@ export interface Location {
   };
   services: string[];
   image?: string;
+  googleRating?: {
+    score: number;
+    reviews: number;
+  };
 }
 
 export const locations: Location[] = [
@@ -26,58 +43,103 @@ export const locations: Location[] = [
     id: '1',
     slug: 'la-torrassa',
     neighborhood: 'La Torrassa',
-    name: 'Locutorio Globalexs',
-    address: 'Dirección pendiente, L\'Hospitalet de Llobregat',
-    phone: '+34 600 000 001',
-    whatsapp: '+34 600 000 001',
+    name: 'Locutorio Globalexs Torrassa',
+    address: 'Carrer Almeria, 8, Local 2, 08905 L\'Hospitalet de Llobregat',
+    fullAddress: {
+      street: 'Carrer Almeria, 8, Local 2',
+      postalCode: '08905',
+      city: 'L\'Hospitalet de Llobregat',
+      province: 'Barcelona',
+      country: 'España',
+    },
+    phone: '664 57 33 20',
+    whatsapp: '664573320',
+    web: 'https://globalexs.mgpsa.com',
     schedule: {
-      weekdays: '09:00 - 21:00',
-      saturday: '10:00 - 14:00',
+      weekdays: '10:00 – 21:30',
+      saturday: '10:00 – 21:30',
       sunday: 'Cerrado',
+      notes: 'El horario podría cambiar en festivos',
     },
     coordinates: {
       lat: 41.3596,
       lng: 2.1137,
     },
-    services: ['Envíos de Dinero', 'Transferencias Locales', 'Pago de Servicios', 'Recargas'],
+    services: [
+      'Envíos de dinero Western Union',
+      'Envíos de dinero Ria',
+      'Envíos de dinero MoneyGram',
+      'Servicios de locutorio',
+    ],
+    image: laTorrassaImg,
+    googleRating: {
+      score: 4.8,
+      reviews: 134,
+    },
   },
   {
     id: '2',
     slug: 'miraflores',
     neighborhood: 'Miraflores',
     name: 'Envíos Miraflores',
-    address: 'Dirección pendiente, L\'Hospitalet de Llobregat',
-    phone: '+34 600 000 002',
-    whatsapp: '+34 600 000 002',
+    address: 'Avinguda Miraflores, 33, Local 4, 08905 L\'Hospitalet de Llobregat',
+    fullAddress: {
+      street: 'Avinguda Miraflores, 33, Local 4',
+      postalCode: '08905',
+      city: 'L\'Hospitalet de Llobregat',
+      province: 'Barcelona',
+      country: 'España',
+    },
+    phone: '643 91 22 25',
+    whatsapp: '643912225',
     schedule: {
-      weekdays: '09:00 - 21:00',
-      saturday: '10:00 - 14:00',
+      weekdays: 'Consultar en el local',
+      saturday: 'Consultar en el local',
       sunday: 'Cerrado',
     },
     coordinates: {
       lat: 41.3650,
       lng: 2.1050,
     },
-    services: ['Envíos de Dinero', 'Transferencias Locales', 'Pago de Servicios', 'Cambio de Divisas'],
+    services: [
+      'Envíos de dinero',
+      'Servicios de locutorio',
+    ],
   },
   {
     id: '3',
     slug: 'collblanc',
     neighborhood: 'Collblanc',
-    name: 'Western Union Collblanc',
-    address: 'Dirección pendiente, L\'Hospitalet de Llobregat',
-    phone: '+34 600 000 003',
-    whatsapp: '+34 600 000 003',
+    name: 'Western Union Agencia Oficial Collblanc',
+    address: 'Carrer Progrés, 49, Local 2, 08904 L\'Hospitalet de Llobregat',
+    fullAddress: {
+      street: 'Carrer Progrés, 49, Local 2',
+      postalCode: '08904',
+      city: 'L\'Hospitalet de Llobregat',
+      province: 'Barcelona',
+      country: 'España',
+    },
+    phone: '634 09 49 68',
+    whatsapp: '634094968',
+    instagram: 'https://instagram.com',
     schedule: {
-      weekdays: '09:00 - 20:00',
-      saturday: '10:00 - 14:00',
+      weekdays: '10:00 – 21:00',
+      saturday: '10:00 – 21:00',
       sunday: 'Cerrado',
+      notes: 'El horario podría cambiar en festivos',
     },
     coordinates: {
       lat: 41.3750,
       lng: 2.1180,
     },
-    services: ['Envíos de Dinero', 'Transferencias Locales', 'Pago de Servicios', 'Recargas', 'Cambio de Divisas'],
+    services: [
+      'Transferencias de dinero Western Union',
+    ],
+    image: collblancImg,
+    googleRating: {
+      score: 4.6,
+      reviews: 48,
+    },
   },
 ];
 

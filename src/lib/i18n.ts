@@ -47,6 +47,11 @@ export const translations = {
       currencyExchange: 'Cambio de Divisas',
       currencyExchangeDesc: 'Cambia tu dinero con tipos de cambio competitivos y sin comisiones ocultas.',
     },
+    // Reviews
+    reviews: {
+      title: 'Lo que dicen nuestros clientes',
+      subtitle: 'Reseñas reales de personas que confían en nosotros',
+    },
     // Trust section
     trust: {
       title: 'Rápido, seguro y cercano',
