@@ -1,35 +1,16 @@
 import { Link } from 'react-router-dom';
-import { Send, ArrowLeftRight, CreditCard, Coins, ArrowRight } from 'lucide-react';
+import { Send, Smartphone, Receipt, Coins, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
+import { services } from '@/lib/services';
 
-const services = [
-  {
-    icon: Send,
-    title: t.services.moneyTransfer,
-    description: t.services.moneyTransferDesc,
-    color: 'bg-primary/10 text-primary',
-  },
-  {
-    icon: ArrowLeftRight,
-    title: t.services.localTransfer,
-    description: t.services.localTransferDesc,
-    color: 'bg-success/10 text-success',
-  },
-  {
-    icon: CreditCard,
-    title: t.services.billPayment,
-    description: t.services.billPaymentDesc,
-    color: 'bg-warning/10 text-warning',
-  },
-  {
-    icon: Coins,
-    title: t.services.currencyExchange,
-    description: t.services.currencyExchangeDesc,
-    color: 'bg-accent text-accent-foreground',
-  },
-];
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Send,
+  Smartphone,
+  Receipt,
+  Coins,
+};
 
 export function ServicesSection() {
   return (
@@ -49,27 +30,48 @@ export function ServicesSection() {
           </p>
         </div>
 
-        {/* Services grid */}
+        {/* Services grid with images */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {services.map((service, index) => (
-            <div
-              key={service.title}
-              className="opacity-0 animate-fade-in"
-              style={{ animationDelay: `${(index + 2) * 100}ms` }}
-            >
-              <div className="card-interactive p-6 h-full">
-                <div className="flex items-start gap-4">
-                  <div className={cn('w-12 h-12 rounded-xl flex items-center justify-center shrink-0', service.color)}>
-                    <service.icon className="h-6 w-6" />
+          {services.slice(0, 4).map((service, index) => {
+            const IconComponent = iconMap[service.icon] || Send;
+            return (
+              <Link
+                key={service.id}
+                to={`/servicios/${service.slug}`}
+                className="opacity-0 animate-fade-in group"
+                style={{ animationDelay: `${(index + 2) * 100}ms` }}
+              >
+                <div className="card-interactive p-0 overflow-hidden h-full">
+                  {/* Image */}
+                  <div className="relative h-36 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-foreground">{service.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+
+                  {/* Content */}
+                  <div className="p-5">
+                    <div className="flex items-start gap-4">
+                      <div className={cn('w-12 h-12 rounded-xl flex items-center justify-center shrink-0 -mt-10 relative z-10', service.color)}>
+                        <IconComponent className="h-6 w-6" />
+                      </div>
+                      <div className="space-y-2 pt-1">
+                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {service.shortDescription}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
         {/* CTA */}

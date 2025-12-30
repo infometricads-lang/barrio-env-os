@@ -1,16 +1,17 @@
+import { Link } from 'react-router-dom';
 import { Layout } from '@/components/layout/Layout';
-import { Send, ArrowLeftRight, CreditCard, Coins, Smartphone, Receipt } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Send, Smartphone, Receipt, Coins } from 'lucide-react';
+import { services } from '@/lib/services';
 import { t } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
 
-const services = [
-  { icon: Send, title: t.services.moneyTransfer, description: t.services.moneyTransferDesc, color: 'bg-primary/10 text-primary' },
-  { icon: ArrowLeftRight, title: t.services.localTransfer, description: t.services.localTransferDesc, color: 'bg-success/10 text-success' },
-  { icon: CreditCard, title: t.services.billPayment, description: t.services.billPaymentDesc, color: 'bg-warning/10 text-warning' },
-  { icon: Coins, title: t.services.currencyExchange, description: t.services.currencyExchangeDesc, color: 'bg-accent text-accent-foreground' },
-  { icon: Smartphone, title: 'Recargas Móviles', description: 'Recarga tu móvil o el de tus familiares en cualquier operador nacional e internacional.', color: 'bg-primary/10 text-primary' },
-  { icon: Receipt, title: 'Pago de Facturas', description: 'Paga tus facturas de servicios de forma cómoda y segura en nuestros locales.', color: 'bg-success/10 text-success' },
-];
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Send,
+  Smartphone,
+  Receipt,
+  Coins,
+};
 
 const Services = () => {
   return (
@@ -21,16 +22,48 @@ const Services = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">{t.services.title}</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t.services.subtitle}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {services.map((service) => (
-              <div key={service.title} className="card-interactive p-6">
-                <div className={cn('w-14 h-14 rounded-xl flex items-center justify-center mb-4', service.color)}>
-                  <service.icon className="h-7 w-7" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
-              </div>
-            ))}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {services.map((service) => {
+              const IconComponent = iconMap[service.icon] || Send;
+              return (
+                <Link
+                  key={service.id}
+                  to={`/servicios/${service.slug}`}
+                  className="group card-interactive p-0 overflow-hidden"
+                >
+                  {/* Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+                    <div className={cn(
+                      'absolute bottom-4 left-4 w-12 h-12 rounded-xl flex items-center justify-center',
+                      service.color
+                    )}>
+                      <IconComponent className="h-6 w-6" />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      {service.shortDescription}
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-primary font-medium text-sm">
+                      Ver más
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

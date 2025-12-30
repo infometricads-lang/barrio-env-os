@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import Locations from "./pages/Locations";
 import LocationDetail from "./pages/LocationDetail";
 import Services from "./pages/Services";
+import ServiceDetail from "./pages/ServiceDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/ubicaciones" element={<Locations />} />
           <Route path="/ubicaciones/:slug" element={<LocationDetail />} />
           <Route path="/servicios" element={<Services />} />
+          <Route path="/servicios/:slug" element={<ServiceDetail />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

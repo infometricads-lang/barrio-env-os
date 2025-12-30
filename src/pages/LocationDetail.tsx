@@ -119,18 +119,29 @@ const LocationDetail = () => {
           </div>
         </div>
 
-        {/* Map placeholder */}
-        <div className="bg-muted rounded-2xl h-64 flex items-center justify-center mb-6 overflow-hidden">
-          <div className="text-center p-6">
-            <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-            <p className="text-muted-foreground mb-3">Vista del mapa</p>
-            <Button asChild variant="outline" size="sm" className="rounded-xl">
-              <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
-                <Navigation className="h-4 w-4 mr-2" />
-                Abrir en Google Maps
-              </a>
-            </Button>
-          </div>
+        {/* Google Maps Embed */}
+        <div className="rounded-2xl overflow-hidden mb-6 border border-border/50">
+          <iframe
+            src={`https://www.google.com/maps?q=${encodeURIComponent(location.address)}&output=embed`}
+            width="100%"
+            height="300"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title={`Mapa de ${location.name}`}
+            className="w-full"
+          />
+        </div>
+        
+        {/* Open in Maps button */}
+        <div className="flex justify-center mb-6">
+          <Button asChild variant="outline" size="sm" className="rounded-xl gap-2">
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
+              <Navigation className="h-4 w-4" />
+              Abrir en Google Maps
+            </a>
+          </Button>
         </div>
 
         {/* CTAs */}
