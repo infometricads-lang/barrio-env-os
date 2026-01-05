@@ -3,7 +3,9 @@ import { Hero } from '@/components/home/Hero';
 import { LocationsSection } from '@/components/home/LocationsSection';
 import { ServicesSection } from '@/components/home/ServicesSection';
 import { ReviewsSection } from '@/components/home/ReviewsSection';
+import { FAQSection } from '@/components/home/FAQSection';
 import { TrustSection } from '@/components/home/TrustSection';
+import { MobileCallButton } from '@/components/layout/MobileCallButton';
 
 const Index = () => {
   return (
@@ -12,7 +14,9 @@ const Index = () => {
       <LocationsSection />
       <ServicesSection />
       <ReviewsSection />
+      <FAQSection />
       <TrustSection />
+      <MobileCallButton />
     </Layout>
   );
 };

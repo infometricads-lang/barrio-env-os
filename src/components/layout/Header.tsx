@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,21 @@ const navItems = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
   const isActive = (href: string) => {
     if (href === '/') return location.pathname === '/';
@@ -22,25 +36,32 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header 
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        isScrolled 
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
+          : "bg-transparent"
+      )}
+    >
       <div className="container-custom">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 sm:h-18 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary">
-              <span className="text-lg font-bold text-primary-foreground">G</span>
+          <Link to="/" className="flex items-center gap-2 sm:gap-2.5">
+            <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-primary shadow-sm">
+              <span className="text-lg sm:text-xl font-bold text-primary-foreground">G</span>
             </div>
-            <span className="text-xl font-semibold text-foreground">GlobalEnvíos</span>
+            <span className="text-lg sm:text-xl font-bold text-foreground font-display">GlobalEnvíos</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
                 className={cn(
-                  'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+                  'px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200',
                   isActive(item.href)
                     ? 'text-primary bg-primary/10'
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -52,8 +73,8 @@ export function Header() {
           </nav>
 
           {/* CTA Button (Desktop) */}
-          <div className="hidden md:flex items-center gap-3">
-            <Button asChild className="rounded-xl gap-2">
+          <div className="hidden lg:flex items-center">
+            <Button asChild className="rounded-xl gap-2 shadow-sm">
               <Link to="/ubicaciones">
                 <MapPin className="h-4 w-4" />
                 {t.nav.findLocation}
@@ -63,7 +84,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+            className="lg:hidden p-2 -mr-2 rounded-lg hover:bg-muted transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
@@ -76,16 +97,20 @@ export function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border/40 animate-fade-in">
-            <nav className="flex flex-col gap-1">
+        <div 
+          className={cn(
+            "lg:hidden overflow-hidden transition-all duration-300 ease-in-out",
+            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          )}
+        >
+          <nav className="py-4 border-t border-border">
+            <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
-                  onClick={() => setIsMenuOpen(false)}
                   className={cn(
-                    'px-4 py-3 text-base font-medium rounded-lg transition-colors',
+                    'px-4 py-3 text-base font-medium rounded-xl transition-colors',
                     isActive(item.href)
                       ? 'text-primary bg-primary/10'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -94,17 +119,17 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <div className="pt-3 mt-2 border-t border-border/40">
-                <Button asChild className="w-full rounded-xl gap-2">
-                  <Link to="/ubicaciones" onClick={() => setIsMenuOpen(false)}>
-                    <MapPin className="h-4 w-4" />
+              <div className="pt-3 mt-2 border-t border-border">
+                <Button asChild className="w-full rounded-xl gap-2 h-12">
+                  <Link to="/ubicaciones">
+                    <MapPin className="h-5 w-5" />
                     {t.nav.findLocation}
                   </Link>
                 </Button>
               </div>
-            </nav>
-          </div>
-        )}
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
   );

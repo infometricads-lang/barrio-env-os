@@ -14,24 +14,24 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function ServicesSection() {
   return (
-    <section className="section-padding bg-muted/30 relative overflow-hidden">
+    <section className="section-padding bg-muted/40 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-1/2 -translate-y-1/2 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl opacity-50" />
+      <div className="absolute top-1/2 -translate-y-1/2 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl opacity-50 -z-10" />
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative">
         {/* Section header */}
-        <div className="text-center mb-12 space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground opacity-0 animate-fade-in">
+        <div className="text-center mb-8 sm:mb-12 space-y-3">
+          <h2 className="opacity-0 animate-fade-in">
             {t.services.title}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in animation-delay-100">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in animation-delay-100">
             {t.services.subtitle}
           </p>
         </div>
 
         {/* Services grid with images */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
           {services.slice(0, 4).map((service, index) => {
             const IconComponent = iconMap[service.icon] || Send;
             return (
@@ -43,26 +43,29 @@ export function ServicesSection() {
               >
                 <div className="card-interactive p-0 overflow-hidden h-full">
                   {/* Image */}
-                  <div className="relative h-36 overflow-hidden">
+                  <div className="relative h-32 sm:h-36 overflow-hidden">
                     <img
                       src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
                   </div>
 
                   {/* Content */}
-                  <div className="p-5">
-                    <div className="flex items-start gap-4">
-                      <div className={cn('w-12 h-12 rounded-xl flex items-center justify-center shrink-0 -mt-10 relative z-10', service.color)}>
-                        <IconComponent className="h-6 w-6" />
+                  <div className="p-4 sm:p-5">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className={cn(
+                        'w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 -mt-8 sm:-mt-10 relative z-10 shadow-md',
+                        service.color
+                      )}>
+                        <IconComponent className="h-5 w-5 sm:h-6 sm:w-6" />
                       </div>
-                      <div className="space-y-2 pt-1">
-                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                      <div className="space-y-1.5 pt-1 min-w-0">
+                        <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                           {service.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
+                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                           {service.shortDescription}
                         </p>
                       </div>
@@ -75,8 +78,8 @@ export function ServicesSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-10 opacity-0 animate-fade-in animation-delay-500">
-          <Button asChild variant="outline" size="lg" className="rounded-xl gap-2">
+        <div className="text-center mt-8 sm:mt-10 opacity-0 animate-fade-in animation-delay-500">
+          <Button asChild variant="outline" size="lg" className="rounded-xl gap-2 h-12">
             <Link to="/servicios">
               Ver todos los servicios
               <ArrowRight className="h-4 w-4" />

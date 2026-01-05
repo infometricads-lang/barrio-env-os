@@ -10,12 +10,10 @@ interface LocationCardProps {
 }
 
 export function LocationCard({ location, variant = 'default' }: LocationCardProps) {
-  const isCompact = variant === 'compact';
-
   return (
     <article className="card-interactive overflow-hidden group h-full flex flex-col">
       {/* Image or placeholder */}
-      <div className="relative h-48 bg-gradient-to-br from-primary/20 to-primary/5 overflow-hidden">
+      <div className="relative h-40 sm:h-48 bg-gradient-to-br from-primary/20 to-primary/5 overflow-hidden">
         {location.image ? (
           <img
             src={location.image}
@@ -29,24 +27,24 @@ export function LocationCard({ location, variant = 'default' }: LocationCardProp
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 rounded-full blur-xl" />
           </>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-          <span className="text-xs font-medium text-primary-foreground bg-primary px-2.5 py-1 rounded-md">
+        <div className="absolute inset-0 bg-gradient-to-t from-card/95 via-card/30 to-transparent" />
+        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
+          <span className="text-xs font-semibold text-primary-foreground bg-primary px-2.5 py-1 rounded-lg">
             {location.neighborhood}
           </span>
           {location.googleRating && (
-            <div className="flex items-center gap-1 bg-background/90 backdrop-blur-sm px-2 py-1 rounded-md">
-              <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
-              <span className="text-xs font-medium">{location.googleRating.score}</span>
-              <span className="text-xs text-muted-foreground">({location.googleRating.reviews})</span>
+            <div className="flex items-center gap-1 bg-background/95 backdrop-blur-sm px-2 py-1 rounded-lg shadow-sm">
+              <Star className="h-3.5 w-3.5 fill-accent text-accent" />
+              <span className="text-xs font-semibold">{location.googleRating.score}</span>
+              <span className="text-xs text-muted-foreground hidden sm:inline">({location.googleRating.reviews})</span>
             </div>
           )}
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-5 flex-1 flex flex-col">
-        <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+      <div className="p-4 sm:p-5 flex-1 flex flex-col">
+        <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
           {location.name}
         </h3>
 
@@ -63,7 +61,10 @@ export function LocationCard({ location, variant = 'default' }: LocationCardProp
 
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Phone className="h-4 w-4 text-primary shrink-0" />
-            <a href={`tel:${location.phone.replace(/\s/g, '')}`} className="hover:text-primary transition-colors">
+            <a 
+              href={`tel:${location.phone.replace(/\s/g, '')}`} 
+              className="hover:text-primary transition-colors"
+            >
               {location.phone}
             </a>
           </div>
@@ -72,13 +73,16 @@ export function LocationCard({ location, variant = 'default' }: LocationCardProp
         {/* Services preview */}
         <div className="flex flex-wrap gap-1.5 mb-4">
           {location.services.slice(0, 2).map((service) => (
-            <span key={service} className="text-xs bg-muted px-2 py-0.5 rounded-md text-muted-foreground">
-              {service.length > 25 ? service.substring(0, 25) + '...' : service}
+            <span 
+              key={service} 
+              className="text-xs bg-muted px-2 py-1 rounded-lg text-muted-foreground"
+            >
+              {service.length > 20 ? service.substring(0, 20) + '...' : service}
             </span>
           ))}
           {location.services.length > 2 && (
-            <span className="text-xs bg-muted px-2 py-0.5 rounded-md text-muted-foreground">
-              +{location.services.length - 2} más
+            <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-lg font-medium">
+              +{location.services.length - 2}
             </span>
           )}
         </div>
@@ -87,7 +91,7 @@ export function LocationCard({ location, variant = 'default' }: LocationCardProp
         <Button
           asChild
           variant="outline"
-          className="w-full rounded-xl group/btn mt-auto"
+          className="w-full rounded-xl group/btn mt-auto h-11"
         >
           <Link to={`/ubicaciones/${location.slug}`}>
             {t.locations.viewLocation}
