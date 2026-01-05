@@ -44,7 +44,7 @@ const reviews: Review[] = [
     name: 'Jorge L.',
     location: 'La Torrassa',
     rating: 4,
-    text: 'Buen horario, están abiertos hasta tarde. Muy conveniente para los que trabajamos. Comisiones razonables.',
+    text: 'Buen horario, están abiertos hasta tarde. Muy conveniente para los que trabajamos.',
     service: 'MoneyGram',
     date: 'Hace 1 semana',
   },
@@ -75,7 +75,7 @@ function StarRating({ rating }: { rating: number }) {
         <Star
           key={i}
           className={`h-4 w-4 ${
-            i < rating ? 'fill-yellow-400 text-yellow-400' : 'fill-muted text-muted'
+            i < rating ? 'fill-accent text-accent' : 'fill-muted text-muted'
           }`}
         />
       ))}
@@ -85,54 +85,52 @@ function StarRating({ rating }: { rating: number }) {
 
 export function ReviewsSection() {
   return (
-    <section className="section-padding bg-muted/30 relative overflow-hidden">
+    <section className="section-padding bg-muted/40 relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl -z-10" />
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom">
         {/* Section header */}
-        <div className="text-center mb-12 space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground opacity-0 animate-fade-in">
+        <div className="text-center mb-8 sm:mb-12 space-y-3">
+          <h2 className="opacity-0 animate-fade-in">
             {t.reviews.title}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in animation-delay-100">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in animation-delay-100">
             {t.reviews.subtitle}
           </p>
           
           {/* Overall rating summary */}
-          <div className="flex items-center justify-center gap-3 opacity-0 animate-fade-in animation-delay-200">
-            <div className="flex items-center gap-1">
-              <Star className="h-6 w-6 fill-yellow-400 text-yellow-400" />
-              <span className="text-2xl font-bold text-foreground">4.7</span>
+          <div className="flex items-center justify-center gap-2 sm:gap-3 opacity-0 animate-fade-in animation-delay-200">
+            <div className="flex items-center gap-1.5">
+              <Star className="h-5 sm:h-6 w-5 sm:w-6 fill-accent text-accent" />
+              <span className="text-xl sm:text-2xl font-bold text-foreground">4.7</span>
             </div>
-            <span className="text-muted-foreground">basado en más de 180 reseñas</span>
+            <span className="text-sm sm:text-base text-muted-foreground">basado en +180 reseñas</span>
           </div>
         </div>
 
         {/* Reviews grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {reviews.map((review, index) => (
             <article
               key={review.id}
-              className="bg-card rounded-2xl p-6 shadow-sm border border-border/50 opacity-0 animate-fade-in relative"
-              style={{ animationDelay: `${(index + 3) * 100}ms` }}
+              className="bg-card rounded-2xl p-5 sm:p-6 shadow-sm border border-border opacity-0 animate-fade-in relative"
+              style={{ animationDelay: `${(index + 3) * 80}ms` }}
             >
               {/* Quote icon */}
-              <Quote className="absolute top-4 right-4 h-8 w-8 text-primary/10" />
+              <Quote className="absolute top-4 right-4 h-6 sm:h-8 w-6 sm:w-8 text-primary/10" />
 
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-primary font-semibold text-sm">
-                      {review.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">{review.name}</p>
-                    <p className="text-xs text-muted-foreground">{review.location}</p>
-                  </div>
+              <div className="flex items-start gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <span className="text-primary font-semibold text-sm">
+                    {review.name.charAt(0)}
+                  </span>
+                </div>
+                <div className="min-w-0">
+                  <p className="font-medium text-foreground truncate">{review.name}</p>
+                  <p className="text-xs text-muted-foreground">{review.location}</p>
                 </div>
               </div>
 
@@ -142,13 +140,13 @@ export function ReviewsSection() {
               </div>
 
               {/* Review text */}
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
                 "{review.text}"
               </p>
 
               {/* Footer */}
-              <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-md">
+              <div className="flex items-center justify-between pt-3 border-t border-border">
+                <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-lg">
                   {review.service}
                 </span>
                 <span className="text-xs text-muted-foreground">{review.date}</span>
@@ -158,19 +156,19 @@ export function ReviewsSection() {
         </div>
 
         {/* Trust badges */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-8 opacity-0 animate-fade-in animation-delay-700">
+        <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-8 opacity-0 animate-fade-in animation-delay-700">
           <div className="flex items-center gap-2 text-muted-foreground">
-            <div className="w-10 h-10 bg-yellow-400/10 rounded-full flex items-center justify-center">
-              <Star className="h-5 w-5 text-yellow-500" />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-accent/10 rounded-full flex items-center justify-center">
+              <Star className="h-4 sm:h-5 w-4 sm:w-5 text-accent" />
             </div>
             <div className="text-left">
               <p className="font-semibold text-foreground text-sm">Google Reviews</p>
-              <p className="text-xs">Reseñas verificadas</p>
+              <p className="text-xs">Verificadas</p>
             </div>
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
-            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-              <span className="text-primary font-bold text-sm">WU</span>
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center">
+              <span className="text-primary font-bold text-xs sm:text-sm">WU</span>
             </div>
             <div className="text-left">
               <p className="font-semibold text-foreground text-sm">Western Union</p>
@@ -178,12 +176,12 @@ export function ReviewsSection() {
             </div>
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
-            <div className="w-10 h-10 bg-orange-500/10 rounded-full flex items-center justify-center">
-              <span className="text-orange-500 font-bold text-sm">Ria</span>
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-accent/10 rounded-full flex items-center justify-center">
+              <span className="text-accent font-bold text-xs sm:text-sm">Ria</span>
             </div>
             <div className="text-left">
               <p className="font-semibold text-foreground text-sm">Ria Money</p>
-              <p className="text-xs">Agente autorizado</p>
+              <p className="text-xs">Autorizado</p>
             </div>
           </div>
         </div>
