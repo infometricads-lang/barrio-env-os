@@ -38,11 +38,11 @@
     --primary-dark: 174 65% 28%;
 
     /* Secondary - Gris cálido */
-    --secondary: 210 40% 96.0784%;
+    --secondary: 0 0% 32%;
     --secondary-foreground: 0 0% 98%;
 
     /* Muted */
-    --muted: 0 0% 63%;
+    --muted: 34 100% 91.7647%;
     --muted-foreground: 0 0% 9%;
 
     /* Accent - Ámbar/Dorado para CTAs destacados */
@@ -84,7 +84,7 @@
     --chart-2: 43 96% 56%;
     --chart-3: 47 95% 53%;
     --chart-4: 24 94% 53%;
-    --chart-5: 27 95.9799% 60.9804%;
+    --chart-5: 0 0% 45%;
 
     /* Typography */
     --font-sans: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
