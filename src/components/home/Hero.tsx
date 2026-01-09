@@ -19,6 +19,8 @@ export function Hero() {
           src={heroImage}
           alt="Servicio de transferencias internacionales de dinero"
           className="w-full h-full object-cover opacity-15"
+          loading="eager"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/98 to-background/80" />
       </div>
