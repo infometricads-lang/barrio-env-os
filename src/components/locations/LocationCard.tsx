@@ -19,6 +19,8 @@ export function LocationCard({ location, variant = 'default' }: LocationCardProp
             src={location.image}
             alt={`${location.name} - ${location.neighborhood}`}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+            decoding="async"
           />
         ) : (
           <>
