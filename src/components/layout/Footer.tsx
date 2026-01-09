@@ -26,8 +26,8 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-4">
             <Link to="/" className="inline-flex items-center gap-2">
-              <div className="h-12 w-12 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center p-1.5">
-                <img src={logo} alt="Super Transferencias" className="h-full w-full object-contain" />
+              <div className="h-12 w-12 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center">
+                <img src={logo} alt="Super Transferencias" className="h-[85%] w-[85%] object-contain" />
               </div>
               <span className="text-xl font-bold text-background font-display">Super Transferencias</span>
             </Link>
