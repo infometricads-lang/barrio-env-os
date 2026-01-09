@@ -75,7 +75,7 @@ function StarRating({ rating }: { rating: number }) {
         <Star
           key={i}
           className={`h-4 w-4 ${
-            i < rating ? 'fill-accent text-accent' : 'fill-muted text-muted'
+            i < rating ? 'fill-star text-star' : 'fill-star-muted text-star-muted'
           }`}
         />
       ))}
@@ -103,7 +103,7 @@ export function ReviewsSection() {
           {/* Overall rating summary */}
           <div className="flex items-center justify-center gap-2 sm:gap-3 opacity-0 animate-fade-in animation-delay-200">
             <div className="flex items-center gap-1.5">
-              <Star className="h-5 sm:h-6 w-5 sm:w-6 fill-accent text-accent" />
+              <Star className="h-5 sm:h-6 w-5 sm:w-6 fill-star text-star" />
               <span className="text-xl sm:text-2xl font-bold text-foreground">4.7</span>
             </div>
             <span className="text-sm sm:text-base text-muted-foreground">basado en +180 reseñas</span>
@@ -158,8 +158,8 @@ export function ReviewsSection() {
         {/* Trust badges */}
         <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-8 opacity-0 animate-fade-in animation-delay-700">
           <div className="flex items-center gap-2 text-muted-foreground">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-accent/10 rounded-full flex items-center justify-center">
-              <Star className="h-4 sm:h-5 w-4 sm:w-5 text-accent" />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-star/10 rounded-full flex items-center justify-center">
+              <Star className="h-4 sm:h-5 w-4 sm:w-5 fill-star text-star" />
             </div>
             <div className="text-left">
               <p className="font-semibold text-foreground text-sm">Google Reviews</p>

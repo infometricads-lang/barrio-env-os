@@ -34,7 +34,7 @@ export function LocationCard({ location, variant = 'default' }: LocationCardProp
           </span>
           {location.googleRating && (
             <div className="flex items-center gap-1 bg-background/95 backdrop-blur-sm px-2 py-1 rounded-lg shadow-sm">
-              <Star className="h-3.5 w-3.5 fill-accent text-accent" />
+              <Star className="h-3.5 w-3.5 fill-star text-star" />
               <span className="text-xs font-semibold">{location.googleRating.score}</span>
               <span className="text-xs text-muted-foreground hidden sm:inline">({location.googleRating.reviews})</span>
             </div>
