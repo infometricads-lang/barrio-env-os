@@ -50,7 +50,7 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 sm:gap-3">
             <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full overflow-hidden bg-white shadow-sm border border-border/50 flex items-center justify-center">
-              <img src={logo} alt="Super Transferencias" className="h-full w-full object-cover scale-[1.5]" />
+              <img src={logo} alt="Super Transferencias" className="h-full w-full object-cover scale-[1.2]" />
             </div>
             <span className="text-lg sm:text-xl font-bold text-foreground font-display">Super Transferencias</span>
           </Link>
