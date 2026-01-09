@@ -49,8 +49,8 @@ export function Header() {
         <div className="flex h-16 sm:h-18 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 sm:gap-3">
-            <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full overflow-hidden bg-white shadow-sm border border-border/50 flex items-center justify-center p-1.5">
-              <img src={logo} alt="Super Transferencias" className="h-full w-full object-contain" />
+            <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full overflow-hidden bg-white shadow-sm border border-border/50 flex items-center justify-center">
+              <img src={logo} alt="Super Transferencias" className="h-[85%] w-[85%] object-contain" />
             </div>
             <span className="text-lg sm:text-xl font-bold text-foreground font-display">Super Transferencias</span>
           </Link>
