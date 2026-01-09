@@ -4,6 +4,7 @@ import { Menu, X, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
+import logo from '@/assets/logo.png';
 
 const navItems = [
   { href: '/', label: t.nav.home },
@@ -47,11 +48,9 @@ export function Header() {
       <div className="container-custom">
         <div className="flex h-16 sm:h-18 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-2.5">
-            <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-primary shadow-sm">
-              <span className="text-lg sm:text-xl font-bold text-primary-foreground">G</span>
-            </div>
-            <span className="text-lg sm:text-xl font-bold text-foreground font-display">GlobalEnvíos</span>
+          <Link to="/" className="flex items-center gap-2 sm:gap-3">
+            <img src={logo} alt="Super Transferencias" className="h-10 w-10 sm:h-11 sm:w-11" />
+            <span className="text-lg sm:text-xl font-bold text-foreground font-display">Super Transferencias</span>
           </Link>
 
           {/* Desktop Navigation */}
