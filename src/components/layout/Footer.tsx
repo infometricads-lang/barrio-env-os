@@ -27,7 +27,7 @@ export function Footer() {
           <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-4">
             <Link to="/" className="inline-flex items-center gap-2">
               <div className="h-12 w-12 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center">
-                <img src={logo} alt="Super Transferencias" className="h-full w-full object-cover scale-[2.1]" />
+                <img src={logo} alt="Super Transferencias" className="h-full w-full object-cover scale-[1.9]" />
               </div>
               <span className="text-xl font-bold text-background font-display">Super Transferencias</span>
             </Link>
