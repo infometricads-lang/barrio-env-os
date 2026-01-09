@@ -78,6 +78,10 @@
     --warning-foreground: 0 0% 100%;
     --info: 200 80% 50%;
     --info-foreground: 0 0% 100%;
+    
+    /* Star rating - Dorado vibrante */
+    --star: 45 93% 47%;
+    --star-muted: 0 0% 80%;
 
     /* Chart colors */
     --chart-1: 27 95% 60%;
@@ -152,6 +156,10 @@
     --success-foreground: 0 0% 100%;
     --warning: 38 80% 55%;
     --warning-foreground: 200 25% 8%;
+    
+    /* Star rating - Dorado vibrante en dark */
+    --star: 45 93% 55%;
+    --star-muted: 0 0% 40%;
 
     --chart-1: 30 97% 72%;
     --chart-2: 45 96% 64%;
