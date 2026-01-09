@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 import { t } from '@/lib/i18n';
+import logo from '@/assets/logo.png';
 
 const quickLinks = [
   { href: '/', label: t.nav.home },
@@ -25,10 +26,8 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 sm:col-span-2 lg:col-span-1 space-y-4">
             <Link to="/" className="inline-flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary">
-                <span className="text-lg font-bold text-primary-foreground">G</span>
-              </div>
-              <span className="text-xl font-bold text-background font-display">GlobalEnvíos</span>
+              <img src={logo} alt="Super Transferencias" className="h-10 w-10" />
+              <span className="text-xl font-bold text-background font-display">Super Transferencias</span>
             </Link>
             <p className="text-background/70 text-sm leading-relaxed max-w-xs">
               {t.footer.description}
@@ -108,7 +107,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-10 sm:mt-12 pt-6 border-t border-background/10">
           <p className="text-center text-xs sm:text-sm text-background/50">
-            © {currentYear} GlobalEnvíos. {t.footer.rights}
+            © {currentYear} Super Transferencias. {t.footer.rights}
           </p>
         </div>
       </div>
