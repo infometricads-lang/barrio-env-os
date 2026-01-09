@@ -41,6 +41,23 @@ const LocationDetail = () => {
           <div className="h-32 sm:h-48 bg-gradient-to-br from-primary/10 to-background" />
         )}
         
+        {/* Image gallery for locations with multiple images */}
+        {location.images && location.images.length > 1 && (
+          <div className="container-custom py-4">
+            <div className="grid grid-cols-4 gap-2 sm:gap-3">
+              {location.images.map((img, idx) => (
+                <div key={idx} className="aspect-square rounded-xl overflow-hidden border border-border">
+                  <img
+                    src={img}
+                    alt={`${location.name} - Imagen ${idx + 1}`}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
         <div className="container-custom relative -mt-16 sm:-mt-20 z-10">
           <Link 
             to="/ubicaciones" 
