@@ -2,6 +2,10 @@
 
 import collblancImg from '@/assets/locations/collblanc.png';
 import laTorrassaImg from '@/assets/locations/la-torrassa.png';
+import miraflor1Img from '@/assets/locations/miraflor-1.jpg';
+import miraflor2Img from '@/assets/locations/miraflor-2.jpg';
+import miraflor3Img from '@/assets/locations/miraflor-3.jpg';
+import miraflor4Img from '@/assets/locations/miraflor-4.jpg';
 
 export interface Location {
   id: string;
@@ -32,6 +36,7 @@ export interface Location {
   };
   services: string[];
   image?: string;
+  images?: string[];
   googleRating?: {
     score: number;
     reviews: number;
@@ -93,9 +98,10 @@ export const locations: Location[] = [
     phone: '643 91 22 25',
     whatsapp: '643912225',
     schedule: {
-      weekdays: 'Consultar en el local',
-      saturday: 'Consultar en el local',
+      weekdays: '10:00 – 21:30',
+      saturday: '10:00 – 21:30',
       sunday: 'Cerrado',
+      notes: 'El horario podría cambiar en festivos',
     },
     coordinates: {
       lat: 41.3650,
@@ -105,6 +111,8 @@ export const locations: Location[] = [
       'Envíos de dinero',
       'Servicios de locutorio',
     ],
+    image: miraflor1Img,
+    images: [miraflor1Img, miraflor2Img, miraflor3Img, miraflor4Img],
   },
   {
     id: '3',
