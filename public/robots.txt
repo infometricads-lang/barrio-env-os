@@ -18,4 +18,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://supertransferencias.com/sitemap.xml
+Sitemap: https://www.supertransferencias.com/sitemap.xml
