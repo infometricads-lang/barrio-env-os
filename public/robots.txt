@@ -1,6 +1,10 @@
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /favicon.png
+Allow: /logo.png
+
 User-agent: Bingbot
 Allow: /
 
@@ -12,3 +16,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://supertransferencias.com/sitemap.xml
