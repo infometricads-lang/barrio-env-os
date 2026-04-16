@@ -111,6 +111,17 @@ export function Footer() {
           <p className="text-center text-xs sm:text-sm text-background/50">
             © {currentYear} Super Transferencias. {t.footer.rights}
           </p>
+          <p className="text-center text-xs text-background/40 mt-2">
+            Web hecha por{' '}
+            <a
+              href="https://metricweb.es"
+              target="_blank"
+              rel="noopener"
+              className="hover:text-primary transition-colors underline-offset-2 hover:underline"
+            >
+              metricweb.es
+            </a>
+          </p>
         </div>
       </div>
     </footer>
